@@ -7,7 +7,7 @@ export type Priority = 'LOW' | 'MEDIUM' | 'HIGH';
 
 export type TeamName =
     | 'Security'
-    | 'Clean up'
+    | 'Clean_up'
     | 'Catering'
     | 'Officiant'
     | 'Waiters';
@@ -48,4 +48,17 @@ export interface RoutineProfile {
     name: 'Standard' | 'Intermittent' | 'Concentrated';
     unavailableMs: number;
     idleMs: number;
+}
+
+export interface Worker {
+    id: string;           // unique ID
+    team: TeamName;
+    status: WorkerStatus;
+    routine: RoutineProfile;
+    currentEventId?: string | null; // ID of the event the worker is currently handling, null if idle
+}
+
+export interface Team {
+    name: TeamName;
+    workers: Worker[];
 }
